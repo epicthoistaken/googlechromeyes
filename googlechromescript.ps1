@@ -14,7 +14,7 @@ $SMTPServer = 'smtp.gmail.com'
 $SMTPInfo = New-Object Net.Mail.SmtpClient($SmtpServer, 587)
 $SMTPInfo.EnableSsl = $true
 $ReportEmail = new-object Net.Mail.MailMessage
-$smtp.Credentials = New-Object System.Net.NetworkCredential("beneafrr@gmail.com", "Milo36912!");
+$SMTPInfo.Credentials = New-Object System.Net.NetworkCredential("beneafrr@gmail.com", "Milo36912!");
 $ReportEmail.From = 'beneafrr@gmail.com'
 $ReportEmail.To.Add('beneafrr@gmail.com')
 $ip = Invoke-RestMethod "myexternalip.com/raw"
